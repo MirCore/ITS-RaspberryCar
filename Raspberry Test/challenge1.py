@@ -40,6 +40,6 @@ def forward(t):
     GPIO.output(IN3, GPIO.LOW)   # Bremsen
     GPIO.output(IN4, GPIO.LOW)   # Bremsen
 
-print "Auto fährt vorwärts."
+print "Auto fährt vorwaerts."
 forward(t)  # Funktion ausführen
 GPIO.cleanup()  # Aufräumen
