@@ -27,4 +27,4 @@ GPIO.output(IN2, GPIO.LOW)   # Bremsen
 GPIO.output(IN3, GPIO.LOW)   # Bremsen
 GPIO.output(IN4, GPIO.LOW)   # Bremsen
 
-GPIO.cleanup()  # Aufräumen
+GPIO.cleanup() # Aufräumen
