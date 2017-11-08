@@ -28,7 +28,7 @@ GPIO.output(ENB, GPIO.HIGH)
 
 t = input("Zeit in Sekunden angeben: ")
 
-print t
+print (t)
 
 # Funktion: Vorwärtsfahren
 def forward(t):
