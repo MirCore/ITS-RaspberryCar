@@ -22,4 +22,9 @@ GPIO.setup(ENB, GPIO.OUT)
 GPIO.setup(IN3, GPIO.OUT)
 GPIO.setup(IN4, GPIO.OUT)
 
+GPIO.output(IN1, GPIO.LOW)   # Bremsen
+GPIO.output(IN2, GPIO.LOW)   # Bremsen
+GPIO.output(IN3, GPIO.LOW)   # Bremsen
+GPIO.output(IN4, GPIO.LOW)   # Bremsen
+
 GPIO.cleanup()  # Aufräumen
