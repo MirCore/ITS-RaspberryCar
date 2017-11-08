@@ -44,4 +44,5 @@ def forward(t):
 
 print ("Auto faehrt vorwaerts.")
 forward(t)  # Funktion ausführen
+
 GPIO.cleanup()  # Aufräumen
