@@ -5,14 +5,14 @@ GPIO.setmode(GPIO.BCM)  # Verwende BCM-Pinnummern
 
 # GPIO-Channel festlegen
 # Motor A
-ENA = 17  # Enable Motor A
-IN1 = 27  # In 1
-IN2 = 22  # In 2
+ENA = 2  # Enable Motor A
+IN1 = 3  # In 1
+IN2 = 4  # In 2
 
 # Motor B
-ENB = 23
-IN3 = 24
-IN4 = 25
+ENB = 17
+IN3 = 27
+IN4 = 22
 
 # GPIOs als Ausgang setzen
 GPIO.setup(ENA, GPIO.OUT)
