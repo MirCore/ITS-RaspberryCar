@@ -10,9 +10,9 @@ IN1 = 3  # In 1
 IN2 = 4  # In 2
 
 # Motor B
-ENB = 17
+ENB = 22
 IN3 = 27
-IN4 = 22
+IN4 = 17
 
 # GPIOs als Ausgang setzen
 GPIO.setup(ENA, GPIO.OUT)
