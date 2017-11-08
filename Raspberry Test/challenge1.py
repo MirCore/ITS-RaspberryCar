@@ -31,8 +31,8 @@ t = int(t)
 
 # Funktion: Vorwärtsfahren
 def forward(t):
-    GPIO.output(IN1, GPIO.HIGH)  # Motor A Rechtslauf
-    GPIO.output(IN2, GPIO.LOW)   # Motor A Rechtslauf
+    GPIO.output(IN1, GPIO.LOW)  # Motor A Rechtslauf
+    GPIO.output(IN2, GPIO.HIGH)   # Motor A Rechtslauf
     GPIO.output(IN3, GPIO.LOW)   # Motor B Linkslauf
     GPIO.output(IN4, GPIO.HIGH)  # Motor B Linkslauf
     time.sleep(t)                # Zeit, die das Auto fährt
