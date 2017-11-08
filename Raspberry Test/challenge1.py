@@ -36,10 +36,10 @@ def forward(t):
     GPIO.output(IN3, False)   # Motor B Linkslauf
     GPIO.output(IN4, True)  # Motor B Linkslauf
     time.sleep(t)                # Zeit, die das Auto fährt
-    GPIO.output(IN1, False)   # Bremsen
-    GPIO.output(IN2, False)   # Bremsen
-    GPIO.output(IN3, False)   # Bremsen
-    GPIO.output(IN4, False)   # Bremsen
+    GPIO.output(IN1, True)   # Bremsen
+    GPIO.output(IN2, True)   # Bremsen
+    GPIO.output(IN3, True)   # Bremsen
+    GPIO.output(IN4, True)   # Bremsen
 
 print ("Auto fährt vorwärts.")
 forward(t)  # Funktion ausführen
