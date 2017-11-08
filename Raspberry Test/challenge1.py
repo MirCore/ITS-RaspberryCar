@@ -28,6 +28,8 @@ GPIO.output(ENB, GPIO.HIGH)
 
 t = input("Zeit in Sekunden angeben: ")
 
+print t
+
 # Funktion: Vorwärtsfahren
 def forward(t):
     GPIO.output(IN1, GPIO.HIGH)  # Motor A Rechtslauf
@@ -40,6 +42,6 @@ def forward(t):
     GPIO.output(IN3, GPIO.LOW)   # Bremsen
     GPIO.output(IN4, GPIO.LOW)   # Bremsen
 
-print "Auto fährt vorwaerts."
+print ("Auto faehrt vorwaerts.")
 forward(t)  # Funktion ausführen
 GPIO.cleanup()  # Aufräumen
