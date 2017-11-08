@@ -23,26 +23,24 @@ GPIO.setup(IN3, GPIO.OUT)
 GPIO.setup(IN4, GPIO.OUT)
 
 # Enable für Motor A und B anschalten
-GPIO.output(ENA, GPIO.HIGH)
-GPIO.output(ENB, GPIO.HIGH)
+GPIO.output(ENA, True)
+GPIO.output(ENB, True)
 
 t = input("Zeit in Sekunden angeben: ")
 t = int(t)
 
 # Funktion: Vorwärtsfahren
 def forward(t):
-    GPIO.output(IN1, GPIO.LOW)  # Motor A Rechtslauf
-    GPIO.output(IN2, GPIO.HIGH)   # Motor A Rechtslauf
-    GPIO.output(IN3, GPIO.LOW)   # Motor B Linkslauf
-    GPIO.output(IN4, GPIO.HIGH)  # Motor B Linkslauf
+    GPIO.output(IN1, False)   # Motor A Rechtslauf
+    GPIO.output(IN2, True)  # Motor A Rechtslauf
+    GPIO.output(IN3, False)   # Motor B Linkslauf
+    GPIO.output(IN4, True)  # Motor B Linkslauf
     time.sleep(t)                # Zeit, die das Auto fährt
-    GPIO.output(IN1, GPIO.LOW)   # Bremsen
-    GPIO.output(IN2, GPIO.LOW)   # Bremsen
-    GPIO.output(IN3, GPIO.LOW)   # Bremsen
-    GPIO.output(IN4, GPIO.LOW)   # Bremsen
+    GPIO.output(IN1, False)   # Bremsen
+    GPIO.output(IN2, False)   # Bremsen
+    GPIO.output(IN3, False)   # Bremsen
+    GPIO.output(IN4, False)   # Bremsen
 
 print ("Auto fährt vorwärts.")
 forward(t)  # Funktion ausführen
-GPIO.output(ENA, GPIO.LOW)
-GPIO.output(ENB, GPIO.LOW)
 GPIO.cleanup()  # Aufräumen
