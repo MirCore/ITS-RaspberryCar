@@ -43,4 +43,6 @@ def forward(t):
 
 print ("Auto fährt vorwärts.")
 forward(t)  # Funktion ausführen
+GPIO.output(ENA, GPIO.LOW)
+GPIO.output(ENB, GPIO.LOW)
 GPIO.cleanup()  # Aufräumen
