@@ -24,23 +24,16 @@ GPIO.setup(IN4, GPIO.OUT)
 GPIO.output(ENA, 1)
 GPIO.output(ENB, 1)
 
-# Fahrzeit abfragen
-t = input("Zeit in Sekunden angeben: ")
-t = int(t)
-
-# Funktion: Vorwärtsfahren
-def forward(t):
-    GPIO.output(IN1, 1)  # Motor A Rechtslauf
-    GPIO.output(IN2, 0)  # Motor A Rechtslauf
-    GPIO.output(IN3, 1)  # Motor B Rechtslauf
-    GPIO.output(IN4, 0)  # Motor B Rechtslauf   
-    time.sleep(t)        # Fahrzeit
+try:
+    while True:
+        GPIO.output(IN1, 1)  # Motor A Rechtslauf
+        GPIO.output(IN2, 0)  # Motor A Rechtslauf
+        GPIO.output(IN3, 1)  # Motor B Rechtslauf
+        GPIO.output(IN4, 0)  # Motor B Rechtslauf
+    
+except KeyboardInterrupt:
     GPIO.output(IN1, 0)  # Bremsen
     GPIO.output(IN2, 0)  # Bremsen
     GPIO.output(IN3, 0)  # Bremsen
     GPIO.output(IN4, 0)  # Bremsen
-
-# Fahrtbeginn
-print ("Auto fährt geradeaus für", t, "Sekunden.")
-forward(t)      # Funktion ausführen
-GPIO.cleanup()  # Aufräumen
+    GPIO.cleanup()       # Aufräumen
