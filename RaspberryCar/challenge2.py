@@ -8,25 +8,28 @@ speed = 50      # Fahrgeschwindigkeit (% Tastverhältnis)
 steerLow  = 0.2 # Fahrgeschwindigkeit Kurve Außenseite
 steerHigh = 1.5 # Fahrgeschwindigkeit Kurve Innenseite
 
-#pr.start(speed)            # Motor A, speed% Tastverhältnis
-#pl.start(speed)            # Motor B, speed% Tastverhältnis
+pr.start(speed)            # Motor A, speed% Tastverhältnis
+pl.start(speed)            # Motor B, speed% Tastverhältnis
 #
-#def forward():
-#    pr.ChangeDutyCycle(speed)  # Motor A, 100% Tastverhältnis
-#    pl.ChangeDutyCycle(speed)  # Motor B, 100% Tastverhältnis
+def forward():
+    pr.ChangeDutyCycle(speed)  # Motor A, 100% Tastverhältnis
+    pl.ChangeDutyCycle(speed)  # Motor B, 100% Tastverhältnis
+    return
 #    
-#def rechts(steerLow, steerHigh):
-#    pr.ChangeDutyCycle(steerLow*speed)   # Tastverhältnis ändern
-#    pl.ChangeDutyCycle(steerHigh*speed)  # Motor B, 100% Tastverhältnis
+def rechts(steerLow, steerHigh):
+    pr.ChangeDutyCycle(steerLow*speed)   # Tastverhältnis ändern
+    pl.ChangeDutyCycle(steerHigh*speed)  # Motor B, 100% Tastverhältnis
+    return
 #
-#def links(steerLow, steerHigh):
-#    pr.ChangeDutyCycle(steerHigh*speed)  # Tastverhältnis ändern
-#    pl.ChangeDutyCycle(steerLow*speed)   # Motor B, 100% Tastverhältnis
+def links(steerLow, steerHigh):
+    pr.ChangeDutyCycle(steerHigh*speed)  # Tastverhältnis ändern
+    pl.ChangeDutyCycle(steerLow*speed)   # Motor B, 100% Tastverhältnis
+    return
 #    
-#GPIO.output(IN1, 1)      # Motor A Rechtslauf
-#GPIO.output(IN2, 0)      # Motor A Rechtslauf
-#GPIO.output(IN3, 1)      # Motor B Rechtslauf
-#GPIO.output(IN4, 0)      # Motor B Rechtslauf
+GPIO.output(IN1, 1)      # Motor A Rechtslauf
+GPIO.output(IN2, 0)      # Motor A Rechtslauf
+GPIO.output(IN3, 1)      # Motor B Rechtslauf
+GPIO.output(IN4, 0)      # Motor B Rechtslauf
 
 anfangsDistanz = distanz("L")
 uGrenze = anfangsDistanz - 2
@@ -41,16 +44,20 @@ def wandfahren(delay, run_event):
         time.sleep(delay)
 
         abstand = distanz("L")
-        print ("Gemessene Entfernung Links = %.1f cm" % abstand)  
-        abstand = distanz("R")
-        print ("Gemessene Entfernung Rechts = %.1f cm" % abstand)  
+        print ("Gemessene Entfernung Links = %.1f cm" % abstand)
     
-#        if uGrenze <= abstand <= oGrenze:
-#            forward()   
-#        elif abstand < uGrenze:
-#            rechts(.2, 1.5)
-#        elif abstand > oGrenze:
-#            links(.2, 1.5)
+        if uGrenze <= abstand <= oGrenze:
+            forward()   
+        elif abstand < uGrenze:
+            steerLow = abstand/uGrenze
+            steerHigh = 2- steerLow
+            print("unterschied: ", steerLow, steerHigh)
+            rechts(.2, 1.5)
+        elif abstand > oGrenze:
+            steerLow = oGrenze/abstand
+            steerHigh = 2- steerLow
+            print("unterschied: ", steerLow, steerHigh)
+            links(.2, 1.5)
  
 def main():
     run_event = threading.Event()
