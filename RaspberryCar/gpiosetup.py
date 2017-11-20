@@ -47,4 +47,9 @@ GPIO.setup(GPIO_ECHO_R, GPIO.IN)
 GPIO.setup(GPIO_TRIGGER_L, GPIO.OUT)
 GPIO.setup(GPIO_ECHO_L, GPIO.IN)
 
+GPIO.output(IN1, 0)  # Bremsen
+GPIO.output(IN2, 0)  # Bremsen
+GPIO.output(IN3, 0)  # Bremsen
+GPIO.output(IN4, 0)  # Bremsen
+
 print ("GPIOs setup erfolgreich")
