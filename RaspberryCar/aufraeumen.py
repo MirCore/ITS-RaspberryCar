@@ -18,3 +18,10 @@ def bremsen():
     GPIO.output(IN2, 0)  # Bremsen
     GPIO.output(IN3, 0)  # Bremsen
     GPIO.output(IN4, 0)  # Bremsen
+    
+def losfahren():
+    ## Erst bremsen dann cleanup
+    GPIO.output(IN1, 1)      # Motor A Rechtslauf
+    GPIO.output(IN2, 0)      # Motor A Rechtslauf
+    GPIO.output(IN3, 1)      # Motor B Rechtslauf
+    GPIO.output(IN4, 0)      # Motor B Rechtslauf
