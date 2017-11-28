@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO  # GPIO-Bibliothek importieren
-from random import randint
+import time                 # Modul time
+from gpiosetup import * 
 
 def distanz(seite):
     if seite == "L":

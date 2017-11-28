@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO  # GPIO-Bibliothek importieren
 import time              # Modul time importieren
+import statistics
 GPIO.setmode(GPIO.BCM)   # Verwende BCM-Pinnummern
 
 # GPIO-Channel festlegen
@@ -40,7 +41,7 @@ def distanz():
 
 try:
     while True:
-        abstand = distanz()
+        abstand = statistics.median([distanz(),distanz(),distanz(),distanz(),distanz()])
         print ("Gemessene Entfernung = %.1f cm" % abstand)
         time.sleep(.5)
 
