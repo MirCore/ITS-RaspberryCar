@@ -12,7 +12,7 @@ np.set_printoptions(threshold=5, precision=2) #Dies ist nur für dieses Handson 
 cap = cv2.VideoCapture(0) # Input 0
 
 def detection():
-    ret, img = cap.read()
+    ret, img = cap.read() # ret ist ein Bool-Wert. Wird das Bild korrekt eingelesen, ist der Wert TRUE.
     return img
 
 img = detection()
