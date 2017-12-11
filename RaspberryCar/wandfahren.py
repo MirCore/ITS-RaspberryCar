@@ -21,7 +21,7 @@ def wandfahren():
     lastSteer = steer
 
     zielAngle = math.degrees(-math.atan((zielDist-dist)/20)) # Winkel zum ziel-Abstand
-    angle = math.degrees(math.atan((lastDist-dist)/10))                # Vermutlicher Winkel des Autos zur Wand
+    angle = math.degrees(math.atan((lastDist-dist)/10))      # Vermutlicher Winkel des Autos zur Wand
     
     if zielAngle == angle:
          steer = 1
