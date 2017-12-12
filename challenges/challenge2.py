@@ -1,9 +1,9 @@
 import threading            # Modul threads
 import time                 # Modul time
 import math
-from gpiosetup import *           # GPIO Setup importieren und ausführen
-from abstand import distanz       # Funktion für Wandabstandmessen importieren
-from aufraeumen import aufraeumen,bremsen # Funktion für cleanup() importieren
+from RaspberryCar.gpiosetup import *           # GPIO Setup importieren und ausführen
+from RaspberryCar.abstand import distanz       # Funktion für Wandabstandmessen importieren
+from RaspberryCar.aufraeumen import aufraeumen,bremsen # Funktion für cleanup() importieren
 
 speed = 50      # Fahrgeschwindigkeit (% Tastverhältnis)
 
@@ -32,10 +32,6 @@ def wandfahren(delay, run_event):
     lastDist = dist
     vorne = 0
     lastVorne = 0
-    altTime= time.time()
-    k=1.5
-    l=0
-    i=0
     
     print ("Distanz: ", dist)
     
@@ -46,36 +42,42 @@ def wandfahren(delay, run_event):
         dist = distanz("L")
         lastVorne = vorne
         vorne = distanz("R")
-
-        error=zielDist-dist
-        dt = time.time()-altTime
-        altTime = time.time()
-        i=i+k*error*dt
-        if i > 100:
-            i=100
-        if i < -100:
-            i=-100
-        p=l*error
-        regler=i+p
         
-        steer = -regler / 100
-        if steer > 1:
+        zielAngle = math.degrees(-math.atan((zielDist-dist)/20)) # Winkel zum ziel-Abstand
+        angle = math.degrees(math.atan((lastDist-dist)/10))      # Vermutlicher Winkel des Autos zur Wand
+        
+        gefahren = lastDist-dist
+        zielabstand = -(zielDist-dist)/10
+        
+        if gefahren > 5:
             steer = 1
-        if steer < -1:
-            steer = -1
-        steer = 1-steer
-            
-        print(" "*int(dist),"█"," "*int(50-dist),"d = %.1f cm" % dist,";s = %.1f" % steer,";r = %.1f" % regler,";i = %.1f" % i,";p = %.1f" % p)
-        print(" "*zielDist,"|")
+        elif gefahren == zielabstand:
+             steer = 1
+        elif gefahren < zielabstand:
+            #steer = zielabstand-gefahren
+            steer = (zielabstand-gefahren)/5
+            #steer = 0.5
+        elif gefahren > zielabstand:
+            #steer = gefahren-zielabstand
+            steer = (gefahren-zielabstand)/5
+            #steer = 1.5
         
+        steer = steer
+        if steer > 2:
+            steer = 2
+        if steer < 0:
+            steer = 0
+           
+        print(" "*int(dist),"█"," "*int(50-dist),"d = %.1f cm" % dist,";s = %.1f" % steer,";g = %.1f" % gefahren,";z = %.1f" % zielabstand)
+        print(" "*zielDist,"|")
         
         if vorne < 10:
             bremsen()
             return
-        #elif vorne < 30 and lastVorne < 30:
-        #    lenken(2)
-        #    time.sleep(.4)
-        if abs(lastDist-dist) < 20:
+        elif vorne < 30 and lastVorne < 30:
+            lenken(2)
+            time.sleep(.4)
+        elif abs(lastDist-dist) < 20:
             lenken(steer)
  
 def main():

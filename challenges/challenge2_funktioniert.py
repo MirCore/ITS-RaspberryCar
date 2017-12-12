@@ -2,9 +2,9 @@ import threading            # Modul threads
 import time                 # Modul time
 import math
 import statistics
-from gpiosetup import *           # GPIO Setup importieren und ausführen
-from abstand import distanz       # Funktion für Wandabstandmessen importieren
-from aufraeumen import aufraeumen,bremsen,losfahren # Funktion für cleanup() importieren
+from RaspberryCar.gpiosetup import *           # GPIO Setup importieren und ausführen
+from RaspberryCar.abstand import distanz       # Funktion für Wandabstandmessen importieren
+from RaspberryCar.aufraeumen import aufraeumen,bremsen,losfahren # Funktion für cleanup() importieren
 
 speed = 3      # 1 bis 4 (*25) (% Tastverhältnis)
 
