@@ -42,11 +42,11 @@ def line(img):
 try:
     while True:
         img = detection()
-        x = line(img)
-        if x is None:
-            x = 999
-        rounded = round(x,1)
-        print("Linienmittelpunkt:",rounded," "*int(0.2*x),"█")
+        mittelpunkt = line(img)
+        if mittelpunkt is None:
+            mittelpunkt = 999
+        rounded = round(mittelpunkt, 1)
+        print("Linienmittelpunkt:", rounded," " * int(0.2 * mittelpunkt), "█")
         
 except KeyboardInterrupt:
     print("Stopp")

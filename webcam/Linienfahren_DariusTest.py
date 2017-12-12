@@ -72,28 +72,28 @@ def main():
 
 
 main()    
-x = 0
+mittelpunkt = 0
 
 try:
     while True:
         img = detection()
-        lastX = x
-        x = line(img)
+        lastX = mittelpunkt
+        mittelpunkt = line(img)
         
-        if x is None:
-            x = lastX
+        if mittelpunkt is None:
+            mittelpunkt = lastX
             
-        rounded = round(x,1)
+        rounded = round(mittelpunkt, 1)
         
-        if x == ideal:
+        if mittelpunkt == ideal:
             forward()
-        if x < ideal:
-            value = (x/ideal)**2
+        if mittelpunkt < ideal:
+            value = (mittelpunkt / ideal) ** 2
             links(value)
-        elif x > ideal:
-            value = (ideal/x)**2
+        elif mittelpunkt > ideal:
+            value = (ideal / mittelpunkt) ** 2
             rechts(value)
-        print("Linienmittelpunkt:",rounded, value, " "*int(0.2*x),"█")
+        print("Linienmittelpunkt:", rounded, value, " " * int(0.2 * mittelpunkt), "█")
         
 except KeyboardInterrupt:
     print("Stopp")
