@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO     # GPIO-Bibliothek importieren
 import time                 # Modul time
-from gpiosetup import *
+from setup import *
 
 def aufraeumen():
     ## Erst bremsen dann cleanup

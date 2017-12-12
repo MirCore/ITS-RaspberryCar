@@ -55,4 +55,5 @@ GPIO.output(IN4, 0)  # Bremsen
 GPIO_TASTER = 4
 GPIO.setup(GPIO_TASTER, GPIO.IN)
 
+
 print("GPIOs setup erfolgreich")

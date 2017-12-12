@@ -2,6 +2,7 @@ import cv2  # Dies ist die Bildverarbeitungsbibliothek OpenCV
 import numpy as np  # Rechnen mit vielen Zahlen in einem Array (z. B. Bilder)
 import math
 import time  # Modul time
+from setup import *
 
 np.set_printoptions(threshold=5, precision=2)  # Anzeige von langen Zahlenkolonnen
 
@@ -42,6 +43,7 @@ def linienfahren(delay, run_event):
     width = np.size(img, 1)
     ideal = width / 2
     mitte = ideal
+    last_line_found = True
 
     while run_event.is_set():
         last_mitte = mitte
@@ -49,8 +51,8 @@ def linienfahren(delay, run_event):
 
         if mitte is None:
             mitte = last_mitte
-            last_mitte = None
-        if mitte is None and last_mitte is None:
+            last_line_found = False
+        if mitte is None and last_line_found is False:
             mitte = ideal
             line_found = False
         else:
@@ -74,6 +76,6 @@ def linienfahren(delay, run_event):
         line_steer = steer
 
         print(" " * int(mitte), "█", " " * int(70 - mitte), "x = %.1f cm" % mitte, ";ideal = %.1f" % ideal)
-        print(" " * ideal, "|")
+        print(" " * int(ideal), "|")
 
         time.sleep(delay)

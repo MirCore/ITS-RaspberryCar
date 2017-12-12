@@ -2,7 +2,7 @@ import math
 import statistics
 import time  # Modul time
 from abstand import distanz  # Funktion für Wandabstand messen importieren
-
+from setup import *
 
 def wandfahren(delay, run_event):
     global wall_steer
@@ -17,7 +17,7 @@ def wandfahren(delay, run_event):
     while run_event.is_set():
         lastDist = dist
         lastSteer = steer
-        dist = statistics.median(distanz("L"), distanz("L"), distanz("L"), distanz("L"), distanz("L"), distanz("L")])
+        dist = statistics.median([distanz("L"), distanz("L"), distanz("L"), distanz("L"), distanz("L"), distanz("L")])
 
         if dist > 60:
             wall_found = False
