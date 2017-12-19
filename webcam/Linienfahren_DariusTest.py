@@ -50,10 +50,10 @@ def forward():
 
 def links(value):
     pl.ChangeDutyCycle(value*speed)
-    pr.ChangeDutyCycle(speed*(1/value))
+    pr.ChangeDutyCycle(((1-value)+1)*speed)
     
 def rechts(value):
-    pl.ChangeDutyCycle(speed*(1/value))
+    pl.ChangeDutyCycle(((1-value)+1)*speed)
     pr.ChangeDutyCycle(value*speed)
 
 #######
@@ -90,7 +90,7 @@ try:
             value = (x/ideal)**2
             links(value)
         elif x > ideal:
-            value = (ideal/x)**2
+            value = ((640-x)/ideal)**2
             rechts(value)
         print("Linienmittelpunkt:",rounded, value, " "*int(0.2*x),"█")
         
