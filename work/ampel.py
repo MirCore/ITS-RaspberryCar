@@ -17,11 +17,17 @@ def checkgreen():
     no_green = cv2.countNonZero(mask)
     return no_green
 
-    while True:
-        checkgreen()
-        no_green = checkgreen()
-        print('Grüne Pixel: ' + str(no_green))
-        
-        if no_green > 500:
-            go = 1
-            break
+
+def checkblue():
+    # Take each frame
+    _, frame = cap.read()
+
+    # Convert BGR to HSV
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+    lower_blue = np.array([129,200,200])
+    upper_blue = np.array([96,255,255])
+
+    mask = cv2.inRange(hsv, lower_blue, upper_blue)
+    no_blue = cv2.countNonZero(mask)
+    return no_blue

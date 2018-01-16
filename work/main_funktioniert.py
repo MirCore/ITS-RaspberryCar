@@ -10,28 +10,36 @@ from aufraeumen import aufraeumen, losfahren, bremsen  # Funktion für cleanup()
 from setup import *  # GPIO Setup importieren und ausführen
 from abstand import distanz  # Funktion für Wandabstand messen importieren
 
-speed = 100  # 1 bis 4 (*25% Tastverhältnis)
+speed = 4  # 1 bis 4 (*25% Tastverhältnis)
 linie_found = True
 
 cap = cv2.VideoCapture(0)  # Input 0
+capture_video = False
+
+# Define the codec and create VideoWriter object
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
 
 # Schauen, ob Ampel grün ist
 def checkgreen():
-    # Take each frame
-    _, frame = cap.read()
+        # Take each frame
+        _, frame = cap.read()
 
-    # Convert BGR to HSV
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        # Convert BGR to HSV
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    lower_green = np.array([45,200,200])
-    upper_green = np.array([80,255,255])
+        lower_green = np.array([45,200,200])
+        upper_green = np.array([80,255,255])
 
-    mask = cv2.inRange(hsv, lower_green, upper_green)
-    no_green = cv2.countNonZero(mask)
-    return no_green
+        mask = cv2.inRange(hsv, lower_green, upper_green)
+        no_green = cv2.countNonZero(mask)
+        return no_green
 
 def line(zeileNr1):
     ret, img = cap.read()
+    
+    if ret==True and capture_video == True:
+        out.write(img)
 
     img_red = img[zeileNr1, :, 2]  # Alles aus der Dimension Höhe und Breite (:,:) und den Farbkanal 2
     img_green = img[zeileNr1, :, 1]
@@ -52,18 +60,20 @@ def lenken(steer):
     if steer < 0:
         steer = 0
         
-    speedHead = (100 - speed)
+    speedHead = (100 - speed * 25) / 25
+    #if speedHead > 2:
+    #    speedHead = 2
         
     if steer == 1:
-        pr.ChangeDutyCycle(speed)  #
-        pl.ChangeDutyCycle(speed)  #
+        pr.ChangeDutyCycle(speed * 25)  #
+        pl.ChangeDutyCycle(speed * 25)  #
     elif steer < 1:
-        pr.ChangeDutyCycle((((1 - steer) * speedHead + speed))*.75)  #
-        pl.ChangeDutyCycle(steer * speed)  #
+        pr.ChangeDutyCycle((((1 - steer) * speedHead + speed) * 25)*.75)  #
+        pl.ChangeDutyCycle(steer * speed * 25)  #
     elif steer > 1:
         steer = 2 - steer
-        pr.ChangeDutyCycle((steer * speed)*.75)  #
-        pl.ChangeDutyCycle(((1 - steer) * speedHead + speed))  #
+        pr.ChangeDutyCycle((steer * speed * 25)*.75)  #
+        pl.ChangeDutyCycle(((1 - steer) * speedHead + speed) * 25)  #
     return
 
 def linienfahren(delay, run_event):
@@ -86,10 +96,9 @@ def linienfahren(delay, run_event):
         i+=1
         
         if mitte is None and linie_found is True:
-            array = [distanz("L") for i in range(10)]
-            sensor = statistics.median(array)
-            #print(sensor, array)
-            if 19 < sensor < 35:
+            sensor = statistics.median([distanz("L"),distanz("L"),distanz("L"),distanz("L"),distanz("L")])
+            print(sensor)
+            if 25 < sensor < 35:
                 linie_found_counter -= 1
             print("Linie verloren: ", linie_found_counter)
         elif mitte is not None:
@@ -104,15 +113,15 @@ def linienfahren(delay, run_event):
         
         if linie_found is True: 
             if mitte is None:
-                speed = 50
+                speed = 2
                 if last_mitte > ideal:
                     mitte = 640
                 else:
                     mitte = 0
             elif width/4 < mitte < width/4*3:
-                speed = 100
+                speed = 4
             else:
-                speed = 75
+                speed = 3
 
             if mitte == ideal:
                 steer = 1
@@ -136,18 +145,15 @@ def wandfahren(delay, run_event):
     zielDist = 21
     dist = distanz("L")
     steer = 1
-    angle = 0
     print("Distanz: ", dist)
 
     while run_event.is_set():
         if linie_found == False:
-            speed = 100
-            lastAngle = angle
+            speed = 4
             lastDist = dist
             lastSteer = steer
-            array = [distanz("L") for i in range(10)]
-            dist = statistics.median(array)
-            #print(dist,array)
+            dist = statistics.median([distanz("L"),distanz("L"),distanz("L"),distanz("L"),distanz("L")])
+
 
             zielAngle = math.degrees(-math.atan((zielDist - dist) / 50))  # Winkel zum ziel-Abstand
             angle = math.degrees(math.atan((lastDist - dist) / 10))  # Vermutlicher Winkel des Autos zur Wand
@@ -169,23 +175,24 @@ def wandfahren(delay, run_event):
 
 def main():
     global speed 
-    
-    cap = cv2.VideoCapture(0) # Input 0
-    no_green = 0
-    print("Warte auf Ampel")
-    
-    while no_green < 500:
-        no_green = checkgreen()        
-    
+    #cap = cv2.VideoCapture(0) # Input 0
+    #while True:
+     #   checkgreen()
+    #    no_green = checkgreen()
+        
+    #    if no_green > 500:
+    #        go = 1
+    #        break
+            
     losfahren()
-    pr.start(0)  # Motor A, speed% Tastverhältnis
-    pl.start(0)  # Motor B, speed% Tastverhältnis
+    pr.start(speed)  # Motor A, speed% Tastverhältnis
+    pl.start(speed)  # Motor B, speed% Tastverhältnis
 
     run_event = threading.Event()
     run_event.set()
 
     th1_delay = .01   # sleep dauer der Funktion
-    th2_delay = .01  # sleep dauer der Funktion
+    th2_delay = .05  # sleep dauer der Funktion
     th1 = threading.Thread(target=linienfahren, args=(th1_delay, run_event))  # Funktion in einem neuen Thread zuordnen
     th2 = threading.Thread(target=wandfahren, args=(th2_delay, run_event))  # Funktion in einem neuen Thread zuordnen
 
@@ -209,6 +216,7 @@ def main():
         print("threads successfully closed")
         
         cap.release()
+        out.release()
         
 if __name__ == '__main__':
     main()

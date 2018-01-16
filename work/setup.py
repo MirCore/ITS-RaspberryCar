@@ -30,8 +30,8 @@ GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
 
 # PWM für Motor A und B
-pr = GPIO.PWM(ENA, 70)  # Motor A, Frequenz = 70 Hz
-pl = GPIO.PWM(ENB, 70)  # Motor B, Frequenz = 70 Hz
+pr = GPIO.PWM(ENA, 73)  # Motor A, Frequenz = 70 Hz
+pl = GPIO.PWM(ENB, 73)  # Motor B, Frequenz = 70 Hz
 
 # GPIO für Echo
 # GPIO Trigger und Echo festlegen
