@@ -32,7 +32,6 @@ def linienmitte(img):
 
     zeile400_bin = zeile400>60   # Schwellwert: 60
 
-    #Das Gleiche kann man auch kürzer ausdrücken:
     x = np.arange( zeile400_bin.shape[0] ) #x=0,1,2 ... N-1 (N=Anzahl von Werten in zeile400_bin)
     if zeile400_bin.sum() != 0:
         mittelpunkt = (zeile400_bin*x).sum() / zeile400_bin.sum()
@@ -51,10 +50,10 @@ def forward():
 
 def links(value):
     pl.ChangeDutyCycle(value*speed)
-    pr.ChangeDutyCycle(speed)
+    pr.ChangeDutyCycle(((1-value)+1)*speed)
     
 def rechts(value):
-    pl.ChangeDutyCycle(speed)
+    pl.ChangeDutyCycle(((1-value)+1)*speed)
     pr.ChangeDutyCycle(value*speed)
 
 #######
@@ -77,8 +76,13 @@ mittelpunkt = 0
 try:
     while True:
         img = detection()
+<<<<<<< HEAD
         lastX = mittelpunkt
         mittelpunkt = line(img)
+=======
+        lastX = x
+        x = linienmitte(img)
+>>>>>>> 88df7ba3bdb13469002e3b8c1bab3bc14098cb44
         
         if mittelpunkt is None:
             mittelpunkt = lastX
@@ -90,8 +94,13 @@ try:
         if mittelpunkt < ideal:
             value = (mittelpunkt / ideal) ** 2
             links(value)
+<<<<<<< HEAD
         elif mittelpunkt > ideal:
             value = (ideal / mittelpunkt) ** 2
+=======
+        elif x > ideal:
+            value = ((640-x)/ideal)**2
+>>>>>>> 88df7ba3bdb13469002e3b8c1bab3bc14098cb44
             rechts(value)
         print("Linienmittelpunkt:", rounded, value, " " * int(0.2 * mittelpunkt), "█")
         
