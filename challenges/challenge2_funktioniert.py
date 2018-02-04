@@ -2,9 +2,9 @@ import threading            # Modul threads
 import time                 # Modul time
 import math
 import statistics
-from RaspberryCar.gpiosetup import *           # GPIO Setup importieren und ausführen
-from RaspberryCar.abstand import distanz       # Funktion für Wandabstandmessen importieren
-from RaspberryCar.aufraeumen import aufraeumen,bremsen,losfahren # Funktion für cleanup() importieren
+from setup import *           # GPIO Setup importieren und ausführen
+from abstand import distanz       # Funktion für Wandabstandmessen importieren
+from aufraeumen import aufraeumen,bremsen,losfahren # Funktion für cleanup() importieren
 
 speed = 3      # 1 bis 4 (*25) (% Tastverhältnis)
 
@@ -91,12 +91,7 @@ def wandfahren(delay, run_event):
             lenken(steer)
  
 def main():
-    
-    print ("Taster drücken")
-    while GPIO.input(GPIO_TASTER) == 1:
-        time.sleep(.1)
-    print("Start in 1 Sekunde", end="\r")
-    time.sleep(1)
+
     
     
     losfahren()
@@ -113,17 +108,8 @@ def main():
 
     # Warten bis Srtg+C gedrückt wird:
     try:
-        while GPIO.input(GPIO_TASTER) == 1:
-            time.sleep(.01)
-            
-        print ("attempting to close threads. Max wait =", max(th1_delay,0)) # Bei mehreren Threads: 0 durch th2_delay erstzen
-        run_event.clear()
-        th1.join()
-        bremsen()
-        print ("threads successfully closed")
         time.sleep(1)
-        main()
-                
+                        
     except KeyboardInterrupt:
         print ("attempting to close threads. Max wait =", max(th1_delay,0)) # Bei mehreren Threads: 0 durch th2_delay erstzen
         run_event.clear()
