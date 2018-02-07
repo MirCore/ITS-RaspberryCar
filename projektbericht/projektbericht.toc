@@ -1,0 +1,11 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}import}{2}
+\contentsline {section}{\numberline {2}makevideo}{2}
+\contentsline {section}{\numberline {3}checkgreen}{2}
+\contentsline {section}{\numberline {4}checkblue}{3}
+\contentsline {section}{\numberline {5}lenken}{3}
+\contentsline {section}{\numberline {6}line}{4}
+\contentsline {section}{\numberline {7}linienfahren}{4}
+\contentsline {section}{\numberline {8}main}{4}
+\contentsline {section}{\numberline {9}main.py}{5}
+\contentsline {section}{\numberline {10}setup.py}{9}
