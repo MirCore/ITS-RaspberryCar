@@ -78,11 +78,13 @@ In den Zeilen $10$ bis $14$ werden die benötigten Einstellungen für OpenCV 2 v
 \section{makevideo}
 \lstinputlisting[language=Python,firstline=17,lastline=33]{../main.py}
 
-Die Aufgabe der \textit{makevideo} Funktion ist es die von der Kamera aufgenommenen Bilder als ein Video zu exportieren. Da das Video nur zur Fehleranalyse und Veranschaulichung dient, wird es vernachlässigt ob das Video in Echtzeit läuft. Dafür wird die aktuelle Fahrzeit, ab dem erkennen der grünen Ampel unten links im Bild eingeblendet.
+Die Aufgabe der \textit{makevideo} Funktion ist es die von der Kamera aufgenommenen Bilder als ein Video zu exportieren. Da das Video nur zur Fehleranalyse und Veranschaulichung dient, wird es vernachlässigt ob das Video in Echtzeit läuft. Dafür wird die aktuelle Fahrzeit, ab dem erkennen der grünen Ampel unten links im Bild eingeblendet. Außerdem wird der zu dem Bild gehörende Messpunkt und dessen Wert eingezeichnet.
+
+Das Video in Zusammenhang mit den eingeblendeten Werten ermöglicht eine deutlich bessere Fehleranalyse als eine Textausgabe über die Konsole (Abb.: \ref{schuh_im_bild}).
 
 \begin{figure}[ht!] \centering
 	\includegraphics[width=.5\textwidth]{schuh_im_bild.png}
-	\caption{Position Presets}
+	\caption{Kamerabild mit Zeitanzeige und Messpunkt, abgelenkt von einem roten Schuh}
 	\label{schuh_im_bild}
 \end{figure}
 
