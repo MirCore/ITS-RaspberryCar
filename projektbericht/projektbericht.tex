@@ -1,12 +1,23 @@
-\documentclass[a4paper,12pt]{article}
- \usepackage[ngerman]{babel}
- \usepackage[utf8]{inputenc}
- \usepackage[T1]{fontenc}
- \usepackage{listings}
- \usepackage{color}
- \usepackage{geometry}
+\documentclass[a4paper, 12pt]{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\linespread{1.2}
+\parindent0cm
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{multicol}
+\usepackage{units}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{geometry}
 	\geometry{a4paper, top=25mm, left=20mm, right=20mm, bottom=30mm, headsep=10mm, footskip=12mm}
- \usepackage{amssymb}
+\usepackage{amssymb}
 	
 
 \lstset{literate=%
@@ -60,8 +71,20 @@
 \section{import}
 \lstinputlisting[language=Python,firstline=1,lastline=14]{../main.py}
 
+Am Anfang der Hauptdatei werden die benötigten Module importiert, gefolgt von den beiden ausgelagerten Dateien. Von aufrauemen.py werden nur die benötigten Funktionen importiert, von setup.py wird alles importiert, da diese Datei keine Funktion enthält.
+
+In den Zeilen $10$ bis $14$ werden die benötigten Einstellungen für OpenCV 2 vorgenommen und ein erstes Bild aufgenommen.
+
 \section{makevideo}
 \lstinputlisting[language=Python,firstline=17,lastline=33]{../main.py}
+
+Die Aufgabe der \textit{makevideo} Funktion ist es die von der Kamera aufgenommenen Bilder als ein Video zu exportieren. Da das Video nur zur Fehleranalyse und Veranschaulichung dient, wird es vernachlässigt ob das Video in Echtzeit läuft. Dafür wird die aktuelle Fahrzeit, ab dem erkennen der grünen Ampel unten links im Bild eingeblendet.
+
+\begin{figure}[ht!] \centering
+	\includegraphics[width=.5\textwidth]{schuh_im_bild.png}
+	\caption{Position Presets}
+	\label{schuh_im_bild}
+\end{figure}
 
 \section{checkgreen}
 \lstinputlisting[language=Python,firstline=36,lastline=50]{../main.py}
