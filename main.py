@@ -4,7 +4,7 @@ import numpy as np  # Rechnen mit vielen Zahlen in einem Array (z. B. Bilder)
 import math         # Modul math
 import time         # Modul time
 
-from aufraeumen import aufraeumen, losfahren, bremsen  # Funktion für KeyboardInterrupt importieren
+from aufraeumen import aufraeumen, losfahren, bremsen  # Funktion für start/stop importieren
 from setup import *  # GPIO Setup importieren und ausführen
 
 cap = cv2.VideoCapture(0)  # Input 0
@@ -89,15 +89,15 @@ def lenken(steer, speed):
         speedHead = speed
 
     if steer == 1:
-        pr.ChangeDutyCycle(speed)
-        pl.ChangeDutyCycle(speed)
+        pr.ChangeDutyCycle(speed) # rechte Motoren
+        pl.ChangeDutyCycle(speed) # linke Motoren
     elif steer < 1:
-        pr.ChangeDutyCycle(((1 - steer) * speedHead + speed)) # rechte Motoren
-        pl.ChangeDutyCycle(steer * speed) # linke Motoren
+        pr.ChangeDutyCycle(((1 - steer) * speedHead + speed))
+        pl.ChangeDutyCycle(steer * speed)
     elif steer > 1:
         steer = 2 - steer # steer auf 0-1 normieren
-        pr.ChangeDutyCycle((steer * speed)) # rechte Motoren
-        pl.ChangeDutyCycle(((1 - steer) * speedHead + speed)) # linke Motoren
+        pr.ChangeDutyCycle((steer * speed))
+        pl.ChangeDutyCycle(((1 - steer) * speedHead + speed))
     return
 
 # Bild machen und Zeile auslesen
