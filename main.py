@@ -89,15 +89,15 @@ def lenken(steer, speed):
         speedHead = speed
 
     if steer == 1:
-        pr.ChangeDutyCycle(speed)  #
-        pl.ChangeDutyCycle(speed)  #
+        pr.ChangeDutyCycle(speed)
+        pl.ChangeDutyCycle(speed)
     elif steer < 1:
-        pr.ChangeDutyCycle(((1 - steer) * speedHead + speed))  #
-        pl.ChangeDutyCycle(steer * speed)  #
+        pr.ChangeDutyCycle(((1 - steer) * speedHead + speed)) # rechte Motoren
+        pl.ChangeDutyCycle(steer * speed) # linke Motoren
     elif steer > 1:
-        steer = 2 - steer
-        pr.ChangeDutyCycle((steer * speed))  #
-        pl.ChangeDutyCycle(((1 - steer) * speedHead + speed))  #
+        steer = 2 - steer # steer auf 0-1 normieren
+        pr.ChangeDutyCycle((steer * speed)) # rechte Motoren
+        pl.ChangeDutyCycle(((1 - steer) * speedHead + speed)) # linke Motoren
     return
 
 # Bild machen und Zeile auslesen
@@ -105,15 +105,15 @@ def line(zeileNr):
     global img, ret
     ret, img = cap.read()
 
-    img_red = img[zeileNr, :, 2]  # Alles aus der Dimension Höhe und Breite (:,:) und den Farbkanal 2
-    img_green = img[zeileNr, :, 1]
-    img_blue = img[zeileNr, :, 0]
+    img_r = img[zeileNr, :, 2]  # Alles aus zeileNr und Breite und Farbkanal 2
+    img_g = img[zeileNr, :, 1]
+    img_b = img[zeileNr, :, 0]
 
-    zeile_bin = (img_red.astype('int16') - (img_green / 2 + img_blue / 2)) > 60
+    zeile_bin = (img_r.astype('int16') - (img_g / 2 + img_b / 2)) > 60 # Rotanteil über Threshold
 
-    # Mittelpunkt berechnen:
+    # Mittelpunkt berechnen und return:
     if zeile_bin.sum() != 0:
-        x = np.arange(zeile_bin.shape[0])  # x=0,1,2 ... N-1 (N=Anzahl von Werten in zeile400_bin)
+        x = np.arange(zeile_bin.shape[0])  # x=0,1,2 ... N-1 (N=Anzahl von Werten in zeile_bin)
         return (zeile_bin * x).sum() / zeile_bin.sum()
     else:
         return None
@@ -165,8 +165,6 @@ def linienfahren(delay, run_event):
 
 # Programm starten
 def main():
-    global speed
-
     losfahren()
     pr.start(0)  # Motor A, speed Tastverhältnis
     pl.start(0)  # Motor B, speed Tastverhältnis
@@ -181,7 +179,7 @@ def main():
     th2 = threading.Thread(target=checkblue, args=(th2_delay, run_event))    # Funktion in einem neuen Thread zuordnen
     th3 = threading.Thread(target=makevideo, args=(th3_delay, run_event))    # Funktion in einem neuen Thread zuordnen
 
-    th3.start()  # Ampel grün Test Thread starten
+    th3.start()  # Video Thread starten
 
     no_green = 0
     print("Warten auf grüne Ampel")
