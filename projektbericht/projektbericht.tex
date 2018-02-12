@@ -13,6 +13,7 @@
 \usepackage{multicol}
 \usepackage{units}
 \usepackage{mathtools}
+\usepackage{subcaption}
 
 \usepackage{listings}
 \usepackage{color}
@@ -68,30 +69,69 @@
 }
  
 \begin{document}
+	\thispagestyle{empty}
+	\begin{flushright}
+		\includegraphics[width=5cm]{HAW_Logo.eps}
+	\end{flushright}
+	Hochschule für Angewandte Wissenschaften Hamburg\\
+	Fakultät Design, Medien und Information\\
+	Department Medientechnik\\[1ex]
+	IT-Systeme\\
+	Prof. Dr. Torsten Edeler
+	
+	\vspace{1cm}
+	\begin{center}
+		\large{Projektbericht}\\
+		\LARGE{Raspberry Car -- Team II}
+		
+		\vspace{2ex}
+		\large{	Jörn Kogerup\\
+				Darius Weiberg\\
+				Mirco Hülsemann}
+		
+		\vspace{2ex}
+		\large{12. Februar 2018}
+		
+	\end{center}
 
-\subsection{import}	%%%%%%%%%% import %%%%%%%%%%
+\newpage
+\tableofcontents
+\newpage
+
+\section{Code}
+
+Das Programm wird über die \textit{main.py} Datei ausgeführt. Zwei Module \textit{setup.py} und \textit{aufrauemen.py} sind ausgelagert, dadurch ist die Hauptdatei übersichtlicher und die Module können leichter von anderen Dateien mitbenutzt werden.
+
+\subsection{main.py}
+
+In \textit{main.py} wird threading verwendet, was gleich mehrere Vorteile hat. Die Bilderaufnahme ist extrem viel schneller, wenn sie auf einem anderen thread als der restliche Algorithmus läuft und das abspeichern der Bilder für eine Videoausgabe würde ohne das threading die Rechendauer um ein vielfaches erhöhen. Außerdem können so andere Funktionen unabhängig von dem restlichen Programm problemlos ausgeführt werden.
+
+Es werden mehrere globale Variablen zwischen den einzelnen threads benutzt. Zum einen die Bildvariablen \textit{ret} und \textit{img}, damit nicht jede Funktion eigene Bilder aufnehmen muss und zum anderen der Linienmesswert \textit{x} und die verstrichene Zeit \textit{minutes, seconds}, die zur Videoausgabe benötigt werden.
+
+
+\subsubsection{import}	%%%%%%%%%% import %%%%%%%%%%
 \lstinputlisting[language=Python,firstline=1,lastline=14]{../main.py}
 
-Am Anfang der Hauptdatei werden die benötigten Module importiert, gefolgt von den beiden ausgelagerten Dateien. Von aufrauemen.py werden nur die benötigten Funktionen importiert und von setup.py wird alles importiert, da diese Datei keine Funktion enthält.
+Am Anfang der Hauptdatei werden die benötigten Module importiert, gefolgt von den beiden ausgelagerten Dateien. Von aufrauemen.py werden die benötigten Funktionen und von setup.py wird alles importiert, da diese Datei keine Funktion enthält.
 
 In den Zeilen $10$ bis $14$ werden die benötigten Einstellungen für OpenCV 2 vorgenommen und ein erstes Bild aufgenommen.
 
-\subsection{main}	%%%%%%%%%% main %%%%%%%%%%
+\newpage
+\subsubsection{main}	%%%%%%%%%% main %%%%%%%%%%
 \lstinputlisting[language=Python,firstline=167]{../main.py}
 
-Das Programm wird in \textit{main} gestartet und beendet. Als erstes werden die Motoren mit der \text{losfahren} Funktion gestartet, allerdings noch mit einem Tastverhältnis von 0\%.
-Anschließend wird das threading gestartet. Dafür wir wird \textit{run\_event}, das als \textit{while}-Bedingung für die threads dient, gesetzt. Die delay-Angaben und die drei verwendeten threads th1, th2 und th3 werden definiert. \textit{target} ist die Funktion die in dem neuen thread laufen soll und \textit{args} sind die Variablen die mit übergeben werden.
-Die drei threads sind, \textit{linienfahren} (der eigentliche lenk-Algorithmus), \textit{checkblue} (der Test ob die Ampel blau leuchtet) und \textit{makevideo} (die Videoausgabe).\\
+Das Programm wird in \textit{main} gestartet und beendet. Als erstes werden die Motoren mit der \textit{losfahren} Funktion gestartet, allerdings noch mit einem Tastverhältnis von 0\%.
+Anschließend wird das threading gestartet. Dafür wir wird \textit{run\_event}, das als \textit{while}-Bedingung für die threads dient, gesetzt. Die delay-Angaben und die drei verwendeten threads th1, th2 und th3 werden definiert. Dabei ist \textit{target} die Funktion die in dem neuen thread laufen soll und \textit{args} sind die Variablen die mit übergeben werden.
+Die drei threads sind \textit{linienfahren} (der eigentliche lenk-Algorithmus), \textit{checkblue} (Test ob die Ampel blau leuchtet) und \textit{makevideo} (die Videoausgabe).\\
 
-Der erste thread, die Videoaufzeichnung, wird gestartet. Dann folgt eine \textit{while}-Schleife die überprüft ob die Ampel grün ist. Wenn der zurückgegebene Wert der \textit{checkgreen} Funktion größer gleich 500 ist, also ausreichend Grünanteile erkannt wurden endet die Schleife. Dadurch werden die anderen beiden threads gestartet, wodurch das Auto losfährt.
+Der erste thread (die Videoaufzeichnung) wird gestartet, gefolgt von einer \textit{while}-Schleife die überprüft ob die Ampel grün ist. Wenn der zurückgegebene Wert der \textit{checkgreen} Funktion größer gleich 500 ist, also ausreichend Grünanteile erkannt wurden endet die Schleife. Dadurch werden die anderen beiden threads gestartet, wodurch das Auto losfährt.
 
 Damit das Programm wieder beendet werden kann, folgt eine \textit{try-while} und \textit{except} Schleife, die weiter keine andere Funktion hat. Sobald ein \textit{KeyboardInterrupt} durch das drücken von Strg-c auftritt wird das Auto gebremst und die threads werden geschlossen. Allerdings muss dabei gewartet werden bis die \textit{while}-Schleifen aller threads durchgelaufen sind. Anschließend werden die GPIO einstellungen bereinigt, die Videoaufnahme beendet und das Video gespeichert.\\
 
 Gestartet wird die \textit{main} Funktion durch eine \textit{if \_\_name\_\_ == "\_\_main\_\_"} abfrage, um die Datei auch als Modul verwenden zu können.
 
-
-
-\subsection{line}	%%%%%%%%%% line %%%%%%%%%%
+\newpage
+\subsubsection{line}	%%%%%%%%%% line %%%%%%%%%%
 \lstinputlisting[language=Python,firstline=104,lastline=119]{../main.py}
 
 In \textit{line} wird ein Bild aufgenommen und, in einer Zeile, der Mittelpunkt der roten Anteile ermittelt.
@@ -100,7 +140,8 @@ Der Funktion wird beim aufrufen die Zeile (\textit{zeileNr}) übergeben, die auf
 
 In Zeile $12$ bis $16$ wird der Mittelpunkt berechnet und zurückgegeben. Falls kein Rotanteil über dem Schwellwert liegt, wird \textit{None} zurückgegeben.
 
-\subsection{linienfahren}	%%%%%%%%%% linienfahren %%%%%%%%%%
+\newpage
+\subsubsection{linienfahren}	%%%%%%%%%% linienfahren %%%%%%%%%%
 \lstinputlisting[language=Python,firstline=122,lastline=164]{../main.py}
 
 \textit{linienfahren} ruft die Funktion \textit{line} auf und berechnet die Lenkung und Geschwindigkeit aus dem zurückgegebenen Wert.
@@ -138,7 +179,8 @@ Anschließend folgt in Zeile $40/41$ eine Textausgabe über die Konsole. Dabei w
                        |
 \end{lstlisting}
 
-\subsection{lenken}	%%%%%%%%%% lenken %%%%%%%%%%
+\newpage
+\subsubsection{lenken}	%%%%%%%%%% lenken %%%%%%%%%%
 \lstinputlisting[language=Python,firstline=76,lastline=101]{../main.py}
 
 Die \textit{lenken} Funktion steuert das Tastverhältnis der Motoren. Übergeben werden zwei Parameter für die Lenkgewichtung und die Geschwindigkeit.
@@ -160,7 +202,7 @@ Die Kombination aus dem Lenkwert, Geschwindigkeitswert und Kopfraum ermöglicht 
 	\centering
 	\caption{Beispielwerte für die Motorensteuerung}
 	\begin{tabular}{c|c|c|c}
-		Lenken & Geschwindigkeit & $T_{\text{innen}} [\%]$ &  $T_{\text{aussen}}[\%]$ \\ \hline 
+		Lenken & Geschwindigkeit & $T_{\text{innen}} [\%]$ &  $T_{\text{au\ss en}}[\%]$ \\ \hline 
 		0,2 & 20 & \ 2 & 36 \\  
 		    & 60 & 12  & 92 \\    
 		    & 80 & 16  & 96 \\ \hline
@@ -170,18 +212,21 @@ Die Kombination aus dem Lenkwert, Geschwindigkeitswert und Kopfraum ermöglicht 
 	\end{tabular} 
 \end{table}
 
-\subsection{checkgreen}	%%%%%%%%%% checkgreen %%%%%%%%%%
+\newpage
+\subsubsection{checkgreen}	%%%%%%%%%% checkgreen %%%%%%%%%%
 \lstinputlisting[language=Python,firstline=36,lastline=50]{../main.py}
 
 Die \textit{checkgreen} Funktion Analysiert ein ganzes Bild der Webcam auf ihren Grünanteil und gibt die Anzahl zurück.
 
-\subsection{checkblue}	%%%%%%%%%% checkblue %%%%%%%%%%
+\newpage
+\subsubsection{checkblue}	%%%%%%%%%% checkblue %%%%%%%%%%
 \lstinputlisting[language=Python,firstline=53,lastline=73]{../main.py}
 
-\textit{checkblue} funktioniert ähnlich wie \textit{checkblue}, allerdings läuft die Funktion in Dauerschleife und stoppt das Auto 1,5 Sekunden nachdem die blaue Ampel erkannt wurde.
-Die Funktion nimmt dabei kein eigenes Bild auf, sondern verwendet das Bild, dass von den \textit{linienfahren} Funktion aufgenommen wurde. Beim starten des threads wird wartet die Funktion eine Sekunde, damit nicht die grüne Ampel fälschlicher weise als Stopsignal erkannt wird.
+\textit{checkblue} funktioniert ähnlich wie \textit{checkgreen}, allerdings läuft die Funktion in Dauerschleife und stoppt das Auto 1,5 Sekunden nachdem die blaue Ampel erkannt wurde.
+Die Funktion nimmt dabei kein eigenes Bild auf, sondern verwendet das Bild, dass von der \textit{linienfahren} Funktion aufgenommen wurde. Beim starten des threads wartet die Funktion eine Sekunde, damit die grüne Ampel nicht fälschlicher weise als Stopsignal erkannt wird.
 
-\subsection{makevideo}	%%%%%%%%%% mekvideo %%%%%%%%%%
+\newpage
+\subsubsection{makevideo}	%%%%%%%%%% mekvideo %%%%%%%%%%
 \lstinputlisting[language=Python,firstline=17,lastline=33]{../main.py}
 
 Die Aufgabe der \textit{makevideo} Funktion ist es die von der Kamera aufgenommenen Bilder als ein Video zu exportieren. Da das Video nur zur Fehleranalyse und Veranschaulichung dient, wird es vernachlässigt ob das Video in Echtzeit läuft. Dafür wird die aktuelle Fahrzeit, ab dem erkennen der grünen Ampel, unten links im Bild eingeblendet. Außerdem wird der zu dem Bild gehörende Messpunkt und dessen Wert eingezeichnet.
@@ -194,16 +239,47 @@ Das Video in Zusammenhang mit den eingeblendeten Werten ermöglicht eine deutlic
 	\label{schuh_im_bild}
 \end{figure}
 
+\newpage
 \subsection{setup.py}	%%%%%%%%%% setup %%%%%%%%%%
 \lstinputlisting[language=Python]{../setup.py}
 
 In \textit{setup.py} werden die GPIOs definiert und wird am Anfang von \textit{main.py} aufgerufen. Verwendet wird der BCM Modus. Für die PWM wurde eine Frequenz von $\unit[73]{Hz}$ gewählt.
 
+\newpage
 \subsection{aufraeumen.py}	%%%%%%%%%% aufräumen %%%%%%%%%%
 \lstinputlisting[language=Python]{../aufraeumen.py}
 
 In \textit{aufrauemen.py} sind drei Funktionen ausgelagert. \textit{losfahren} setzt die vier GPIOs der Motoren auf die entsprechenden Werte zum Vorwärtsfahren, \textit{bremsen} setzt die GPIOs, zum stoppen des Autos, auf null und \textit{aufrauemen} stoppt das Auto und bereinigt die GPIO Einstellungen.
 
+
+\newpage
+\section{3D-Druck Halterungen}
+
+\subsection{Kamerahalterung}
+\begin{figure}[ht!] \centering
+	\includegraphics[width=.3\textwidth]{../bilder_videos/Kamerahalterung.png}
+	\caption{Kamerahalterung}
+	\label{kamerahalterung}
+\end{figure}
+
+\subsection{Sensorhalterung}
+\begin{figure}[ht!] \centering
+	\begin{subfigure}{.5\textwidth} \centering
+		\includegraphics[width=\textwidth]{../3D-Druck_Modelle/Sensorhalterung.png}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth} \centering
+		\includegraphics[width=\textwidth]{../3D-Druck_Modelle/Sensorhalterung_Top.png}
+	\end{subfigure}\\
+	\begin{subfigure}{.5\textwidth} \centering
+		\includegraphics[width=\textwidth]{../bilder_videos/Sensorhalterung.png}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth} \centering
+		\includegraphics[width=\textwidth]{../bilder_videos/Sensorhalterung_Top.png}
+	\end{subfigure}%
+	\caption{Sensorhalterung 3D-Modell und 3D-Druck}
+\end{figure}
+
+\newpage
 \section{Anhang}
 
 \subsection{main.py}
