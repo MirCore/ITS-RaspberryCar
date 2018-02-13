@@ -100,11 +100,13 @@
 
 \section{Code}
 
-Das Programm wird über die \textit{main.py} Datei ausgeführt. Zwei Module \textit{setup.py} und \textit{aufrauemen.py} sind ausgelagert, dadurch ist die Hauptdatei übersichtlicher und die Module können leichter von anderen Dateien mitbenutzt werden.
+Das Programm wird über die \textit{main.py} Datei ausgeführt. Zwei Module \textit{setup.py} und \textit{aufrauemen.py} sind ausgelagert, dadurch ist die Hauptdatei übersichtlicher und die Module können einfacher von anderen Dateien mitbenutzt werden.
 
 \subsection{main.py}
 
 In \textit{main.py} wird threading verwendet, was gleich mehrere Vorteile hat. Die Bilderaufnahme ist extrem viel schneller, wenn sie auf einem anderen thread als der restliche Algorithmus läuft und das abspeichern der Bilder für eine Videoausgabe würde ohne das threading die Rechendauer um ein vielfaches erhöhen. Außerdem können so andere Funktionen unabhängig von dem restlichen Programm problemlos ausgeführt werden.
+
+Es laufen drei threads parallel. Der eigentliche Fahralgorithmus \textit{linienfahren}, die Videoausgabe \textit{makevideo} und die Ampelüberprüfung \textit{checkblue}. \textit{linienfahren} ruft zwei Funktionen auf, \textit{line} zum Bildaufnehmen und \textit{lenken} zur Motorsteuerung.
 
 Es werden mehrere globale Variablen zwischen den einzelnen threads benutzt. Zum einen die Bildvariablen \textit{ret} und \textit{img}, damit nicht jede Funktion eigene Bilder aufnehmen muss und zum anderen der Linienmesswert \textit{x} und die verstrichene Zeit \textit{minutes, seconds}, die zur Videoausgabe benötigt werden.
 
@@ -243,7 +245,9 @@ Das Video in Zusammenhang mit den eingeblendeten Werten ermöglicht eine deutlic
 \subsection{setup.py}	%%%%%%%%%% setup %%%%%%%%%%
 \lstinputlisting[language=Python]{../setup.py}
 
-In \textit{setup.py} werden die GPIOs definiert und wird am Anfang von \textit{main.py} aufgerufen. Verwendet wird der BCM Modus. Für die PWM wurde eine Frequenz von $\unit[73]{Hz}$ gewählt.
+In \textit{setup.py} werden die GPIOs definiert, der Skript wird am Anfang von \textit{main.py} aufgerufen. Verwendet wird der BCM Modus. Für die PWM wurde eine Frequenz von $\unit[73]{Hz}$ gewählt.
+
+Dadurch dass das GPIO-Setup ausgelagert war konnten alle Python Skripte während der ganzen Entwicklungsphase problemlos verwendet werden. Wenn die GPIOs sich ändern, muss dies nur in dieser einen Datei eingetragen werden.
 
 \newpage
 \subsection{aufraeumen.py}	%%%%%%%%%% aufräumen %%%%%%%%%%
@@ -262,7 +266,18 @@ In \textit{aufrauemen.py} sind drei Funktionen ausgelagert. \textit{losfahren} s
 	\label{kamerahalterung}
 \end{figure}
 
-\subsection{Sensorhalterung}
+\begin{figure}[ht!] \centering
+\includegraphics[width=.5\textwidth]{../3D-Druck_Modelle/Kamerahalterung_alt.png}
+\caption{3D-Modell der ersten Kamerahalterung}
+\label{kamerahalterung alt}
+\end{figure}
+
+\subsection{Ultraschallsensorhalterung}
+
+Für den Ultraschallsensor HC-SR04 wurde eine Halterung entworfen die es ermöglicht den Sensor sowohl aufrecht als auch Kopfüber an dem Auto zu befestigen. Außerdem sollte der Sensor, wie alle Teile des Autos einfach abnehmbar sein, falls Änderungen vorgenommen werden müssen. Entworfen wurde das Modell in Blender 2.79, mit zwei löchern für Schrauben, platz für weitere Bohrungen und einen Schlitz für die Steckverbindung.
+
+Der 3D-Druck ging problemlos und die Halterung erfüllte die Anforderungen, es stellte sich aber heraus, dass die Maße der Sensoren teilweise zu stark voneinander abweichen, deswegen wurde das Modell noch einmal mit mehr Spielraum überarbeitet.
+
 \begin{figure}[ht!] \centering
 	\begin{subfigure}{.5\textwidth} \centering
 		\includegraphics[width=\textwidth]{../3D-Druck_Modelle/Sensorhalterung.png}
@@ -276,8 +291,17 @@ In \textit{aufrauemen.py} sind drei Funktionen ausgelagert. \textit{losfahren} s
 	\begin{subfigure}{.5\textwidth} \centering
 		\includegraphics[width=\textwidth]{../bilder_videos/Sensorhalterung_Top.png}
 	\end{subfigure}%
-	\caption{Sensorhalterung 3D-Modell und 3D-Druck}
+	\caption{Ultraschallsensorhalterung 3D-Modell und fertiger 3D-Druck}
 \end{figure}
+
+\newpage
+\section{Geplante Weiterentwicklungen}
+
+Es sind diverse Weiterentwicklungen an dem Auto geplant, die bisher nicht verwirklicht wurden.
+Ein Plan ist es die Videoausgabe deutlich auszubauen. So können mehr Messwerte angezeigt werden, wie zum Beispiel die Lenk- und Geschwindigkeitswerte oder die Drehzahl der Motoren und damit die Zurückgelegte Strecke. Optimal wäre die Ausgabe eines Livestreams, was allerdings nur möglich ist, wenn dadurch der Fahralgorithmus nicht verlangsamt wird.
+Zudem war eine anzeige der aktuellen Messwerte über LEDs in Entwicklung.
+
+Der Aufbau der Bauteile auf dem Auto soll noch kompakter werden, in dem Platzsparender gelötet wird. Dadurch wären alle Platinen auf der unteren Platte platziert, so dass nur noch der Raspberry Pi, der Akku und die Kamera zu sehen sind.
 
 \newpage
 \section{Anhang}

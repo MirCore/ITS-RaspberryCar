@@ -12,6 +12,7 @@
 \BOOKMARK [2][-]{subsection.1.3}{aufraeumen.py}{section.1}% 12
 \BOOKMARK [1][-]{section.2}{3D-Druck Halterungen}{}% 13
 \BOOKMARK [2][-]{subsection.2.1}{Kamerahalterung}{section.2}% 14
-\BOOKMARK [2][-]{subsection.2.2}{Sensorhalterung}{section.2}% 15
-\BOOKMARK [1][-]{section.3}{Anhang}{}% 16
-\BOOKMARK [2][-]{subsection.3.1}{main.py}{section.3}% 17
+\BOOKMARK [2][-]{subsection.2.2}{Ultraschallsensorhalterung}{section.2}% 15
+\BOOKMARK [1][-]{section.3}{Geplante Weiterentwicklungen}{}% 16
+\BOOKMARK [1][-]{section.4}{Anhang}{}% 17
+\BOOKMARK [2][-]{subsection.4.1}{main.py}{section.4}% 18
