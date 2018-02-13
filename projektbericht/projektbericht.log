@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.2.7)  13 FEB 2018 12:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.2.7)  13 FEB 2018 13:15
 entering extended mode
 **./projektbericht.tex
 (projektbericht.tex
@@ -1298,96 +1298,111 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 262.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 262.
-<../bilder_videos/Kamerahalterung.png, id=464, 1577.895pt x 2150.0325pt>
+<../3D-Druck_Modelle/Kamerahalterung_neu.png, id=464, 670.505pt x 893.3375pt>
+File: ../3D-Druck_Modelle/Kamerahalterung_neu.png Graphic file (type png)
+<use ../3D-Druck_Modelle/Kamerahalterung_neu.png>
+Package pdftex.def Info: ../3D-Druck_Modelle/Kamerahalterung_neu.png  used on i
+nput line 265. on input line 265.
+Package pdftex.def Info: Requested size: 159.62085pt x 212.66058pt on input lin
+e 265.
+<../3D-Druck_Modelle/Kamerahalterung_neu_top.png, id=465, 509.905pt x 680.5425p
+t>
+File: ../3D-Druck_Modelle/Kamerahalterung_neu_top.png Graphic file (type png)
+<use ../3D-Druck_Modelle/Kamerahalterung_neu_top.png>
+Package pdftex.def Info: ../3D-Druck_Modelle/Kamerahalterung_neu_top.png  used 
+on input line 268. on input line 268.
+Package pdftex.def Info: Requested size: 159.62085pt x 213.03246pt on input lin
+e 268.
+<../bilder_videos/Kamerahalterung.png, id=466, 1478.52374pt x 1971.365pt>
 File: ../bilder_videos/Kamerahalterung.png Graphic file (type png)
 <use ../bilder_videos/Kamerahalterung.png>
 Package pdftex.def Info: ../bilder_videos/Kamerahalterung.png  used on input li
-ne 264. on input line 264.
-Package pdftex.def Info: Requested size: 145.11053pt x 197.72665pt on input lin
-e 264.
-<../3D-Druck_Modelle/Kamerahalterung_alt.png, id=465, 887.315pt x 592.2125pt>
+ne 271. on input line 271.
+Package pdftex.def Info: Requested size: 159.62085pt x 212.82002pt on input lin
+e 271.
+<../3D-Druck_Modelle/Kamerahalterung_alt.png, id=467, 887.315pt x 592.2125pt>
 File: ../3D-Druck_Modelle/Kamerahalterung_alt.png Graphic file (type png)
 <use ../3D-Druck_Modelle/Kamerahalterung_alt.png>
 Package pdftex.def Info: ../3D-Druck_Modelle/Kamerahalterung_alt.png  used on i
-nput line 270. on input line 270.
+nput line 278. on input line 278.
 Package pdftex.def Info: Requested size: 241.84843pt x 161.40858pt on input lin
-e 270.
+e 278.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 275.
+(babel)             in language  on input line 283.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 275.
-<../3D-Druck_Modelle/Sensorhalterung.png, id=466, 959.585pt x 640.3925pt>
+(babel)             in language  on input line 283.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 288.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 288.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 288.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 288.
+ [15 <../3D-Druck_Modelle/Kamerahalterung_neu.png (PNG copy)> <../3D-Druck_Mode
+lle/Kamerahalterung_neu_top.png (PNG copy)> <../bilder_videos/Kamerahalterung.p
+ng (PNG copy)> <../3D-Druck_Modelle/Kamerahalterung_alt.png (PNG copy)>]
+<../3D-Druck_Modelle/Sensorhalterung.png, id=474, 959.585pt x 640.3925pt>
 File: ../3D-Druck_Modelle/Sensorhalterung.png Graphic file (type png)
 <use ../3D-Druck_Modelle/Sensorhalterung.png>
 Package pdftex.def Info: ../3D-Druck_Modelle/Sensorhalterung.png  used on input
- line 283. on input line 283.
+ line 291. on input line 291.
 Package pdftex.def Info: Requested size: 241.84843pt x 161.39734pt on input lin
-e 283.
-<../3D-Druck_Modelle/Sensorhalterung_Top.png, id=467, 973.6375pt x 648.4225pt>
+e 291.
+<../3D-Druck_Modelle/Sensorhalterung_Top.png, id=475, 973.6375pt x 648.4225pt>
 File: ../3D-Druck_Modelle/Sensorhalterung_Top.png Graphic file (type png)
 <use ../3D-Druck_Modelle/Sensorhalterung_Top.png>
 Package pdftex.def Info: ../3D-Druck_Modelle/Sensorhalterung_Top.png  used on i
-nput line 286. on input line 286.
+nput line 294. on input line 294.
 Package pdftex.def Info: Requested size: 241.84843pt x 161.06635pt on input lin
-e 286.
-<../bilder_videos/Sensorhalterung.png, id=468, 2200.22pt x 1467.4825pt>
+e 294.
+<../bilder_videos/Sensorhalterung.png, id=476, 2200.22pt x 1467.4825pt>
 File: ../bilder_videos/Sensorhalterung.png Graphic file (type png)
 <use ../bilder_videos/Sensorhalterung.png>
 Package pdftex.def Info: ../bilder_videos/Sensorhalterung.png  used on input li
-ne 289. on input line 289.
+ne 297. on input line 297.
 Package pdftex.def Info: Requested size: 241.84843pt x 161.28922pt on input lin
-e 289.
-<../bilder_videos/Sensorhalterung_Top.png, id=469, 2053.6725pt x 1369.115pt>
+e 297.
+<../bilder_videos/Sensorhalterung_Top.png, id=477, 2053.6725pt x 1369.115pt>
 File: ../bilder_videos/Sensorhalterung_Top.png Graphic file (type png)
 <use ../bilder_videos/Sensorhalterung_Top.png>
 Package pdftex.def Info: ../bilder_videos/Sensorhalterung_Top.png  used on inpu
-t line 292. on input line 292.
+t line 300. on input line 300.
 Package pdftex.def Info: Requested size: 241.84843pt x 161.21573pt on input lin
-e 292.
+e 300.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 295.
+(babel)             in language  on input line 305.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 295.
+(babel)             in language  on input line 305.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 295.
+(babel)             in language  on input line 305.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 295.
- [15 <../bilder_videos/Kamerahalterung.png (PNG copy)> <../3D-Druck_Modelle/Kam
-erahalterung_alt.png (PNG copy)>]
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 297.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 297.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 297.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 297.
+(babel)             in language  on input line 305.
  [16 <../3D-Druck_Modelle/Sensorhalterung.png (PNG copy)> <../3D-Druck_Modelle/
 Sensorhalterung_Top.png (PNG copy)> <../bilder_videos/Sensorhalterung.png (PNG 
 copy)> <../bilder_videos/Sensorhalterung_Top.png (PNG copy)>]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 298.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 298.
-Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 306.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 306.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 306.
+(babel)             in language  on input line 314.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 306.
+(babel)             in language  on input line 314.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 314.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 314.
  [17]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 307.
+(babel)             in language  on input line 315.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 307.
+(babel)             in language  on input line 315.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 309.
+(babel)             in language  on input line 317.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 309.
-
-(../main.py
+(babel)             in language  on input line 317.
+ (../main.py
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 57.
 Package babel Info: Redefining ngerman shorthand "~
@@ -1415,29 +1430,30 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 172.
  [20])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 321.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 313.
+(babel)             in language  on input line 321.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 313.
+(babel)             in language  on input line 321.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 313.
+(babel)             in language  on input line 321.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 313.
+(babel)             in language  on input line 321.
  [21]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
- (projektbericht.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 313.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 321.
+
+(projektbericht.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 321.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 321.
 Package rerunfilecheck Info: File `projektbericht.out' has not changed.
 (rerunfilecheck)             Checksum: B45205C6A076DA6AA7D7CA0B24E7CD49;1127.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 313.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 321.
  ) 
 Here is how much of TeX's memory you used:
- 14344 strings out of 493312
- 220811 string characters out of 3138900
+ 14354 strings out of 493312
+ 221259 string characters out of 3138900
  698094 words of memory out of 3000000
- 17092 multiletter control sequences out of 15000+200000
+ 17100 multiletter control sequences out of 15000+200000
  59836 words of font info for 49 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  48i,13n,52p,8854b,1910s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1454,9 +1470,9 @@ ublic/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program F
 iles/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam7.pfb>
-Output written on projektbericht.pdf (21 pages, 7376713 bytes).
+Output written on projektbericht.pdf (21 pages, 7248024 bytes).
 PDF statistics:
- 876 PDF objects out of 1000 (max. 8388607)
+ 878 PDF objects out of 1000 (max. 8388607)
  550 named destinations out of 1000 (max. 500000)
- 185 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 195 words of extra memory for PDF output out of 10000 (max. 10000000)
 
