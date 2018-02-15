@@ -98,6 +98,97 @@
 \tableofcontents
 \newpage
 
+\section{Einleitung}
+
+Dieser Projektbericht dient der Dokumentation des Projekts “Entwicklung eines selbstfahrenden Autos” im Modul IT-Systeme des Studiengangs Medientechnik an der HAW Hamburg im Wintersemester 2017/18.\\
+
+Autonomes Fahren ist derzeit ein großes und hochaktuelles Forschungsthema vieler Universitäten, IT-Unternehmen und Automobilhersteller. Mit Hochdruck arbeiten Unternehmen wie Tesla, General Motors oder Waymo zusammen mit IT-Firmen wie Intel und Google daran, selbstfahrende Autos für die breite Masse verfügbar zu machen.
+
+Aufgrund der aktuellen Relevanz und der Tatsache, dass ein selbstfahrendes Auto die ideale Verkörperung eines informationstechnischen Systems ist, ist dieses Thema als Projekt für die Veranstaltung “IT-Systeme” im Wintersemester 2017/2018 auserwählt worden.\\
+
+Der vorliegende Abschlussbericht enthält Erläuterungen zum Projektziel, zum Projektumfeld sowie zu den gegebenen technischen Rahmenbedingungen. Es wird das technische Konzept zur Erreichung des Projektziels vorgestellt sowie die einzelnen Schritte des Entwicklungsprozesses dokumentiert und erläutert. Der gesamte Code sowie Bilder sind im Anhang des Dokuments zu finden.
+
+\section{Projektvorstellung}
+
+Im Rahmen der Vorlesung IT-Systeme (6. Semester des Studiengangs Medientechnik) sollen die Studenten/Studentinnen in kleinen Gruppen ein autonomes Modellbau-Auto entwickeln, welches in der Lage sein soll, mithilfe von Sensoren und Kameras selbstständig eine vorher definierte “Rennstrecke” abzufahren. Die Aufgaben der Studenten umfassen dabei:
+
+
+\begin{itemize}
+	\item eine konzeptionelle Planung zur Umsetzung des Projekts
+	\item die Konstruktion des Modellbau-Autos (dabei wird ein Bausatz verwendet) sowie der Rennstrecke
+	\item die Auseinandersetzung mit der Funktionsweise der elektrischen Komponenten
+	\item die Verschaltung der elektrischen Komponenten
+	\item Programmierung und Implementierung des Steuer-Codes auf einem Raspberry Pi
+\end{itemize}
+
+
+Als zeitlicher Rahmen ist ein Semester vorgesehen. Pro Woche gibt es eine 3-stündige Einheit, in der die Studenten unter Betreuung am Projekt weiterarbeiten können. Es ist jedoch auch möglich, außerhalb dieser Einheit am Projekt weiterzuarbeiten.
+
+Es gibt zudem zwei “Challenge”-Termine im Semester, zu welchen bestimmte Zwischenziele erreicht werden müssen. Auf diese Art wird das Vorankommen der Projekts überprüft und gewährleistet. Am Ende des Semesters erfolgt eine Generalprobe und schließlich die Projektausstellung.
+
+\section{Projektziel, Anforderungen und technische Rahmenbedingungen}
+
+Ziel des Projekts ist es, ein autonomes Auto zu entwickeln, welches mithilfe von Mikrocomputer, Kamera und Abstandssensoren zwei Runden auf einer definierten Rennstrecke selbstständig und erfolgreich absolviert. Dabei sollen die Autos einzeln starten, es befindet sich also nie mehr als ein Auto auf der Strecke. Die Gruppe, deren Auto den Kurs am schnellsten durchfährt, wird als Gewinner geehrt.
+
+Auf dem Weg zu diesem Ziel gibt es im Laufe des Semester zudem zwei Zwischenziele, sogenannte Challenges, die erfolgreich absolviert werden müssen. Das erste Zwischenziel ist eine Geradeausfahrt von 10 Metern mit Geschwindigkeitswechseln, das zweite Zwischenziel ist das Fahren entlang einer Wand mithilfe von Abstandssensoren.
+
+\section{Die Rennstrecke}
+Die “Rennstrecke”, die es zu meistern gilt, wird am Anfang des Semesters grob definiert:
+
+Sie soll als geschlossene Rundstrecke (Startlinie = Ziellinie) in einem Laborraum der Hochschule aufgebaut werden. Im Wesentlichen soll sie aus einer Mittellinie sowie zwei Begrenzungslinien bestehen. Der Mittellinie gilt es zu folgen, die Begrenzungslinien dürfen nicht überschritten werden. Die Strecke soll außerdem mehrere Kurven mit verschiedenem Radius enthalten sowie einen geraden Abschnitt ohne Mittellinie entlang einer Wand. In diesem Abschnitt ohne Mittellinie sollen Abstandssensoren genutzt werden, um auf der Spur zu bleiben.
+
+%Die finale, endgültige Version der Rennstrecke wird im Laufe des Semesters anhand der oben genannten Richtlinien von einer Gruppe von Studenten entworfen und sieht letztendlich wie folgt aus: 
+
+%BILD
+
+Die Linien werden mit Klebeband realisiert, welches auf den Boden des Laborraums aufgeklebt wird. Als Mittellinie dient rotes Tape, als Begrenzungslinie schwarzes. 
+
+Aufgrund von Problemen mit den verfügbaren Abstandssensoren, die sich erst im Laufe des Semesters ergeben haben, ist der gerade Abschnitt entlang der Wand in der endgültigen Version nun doch mit einer Mittellinie versehen. Die Aufgabe, mithilfe von Abstandssensoren entlang einer Wand zu fahren, fällt somit - zumindest in der Generalprobe und Projektausstellung - weg.
+
+Eine weitere Änderung der anfänglichen Version der Rennstrecke ist die Einführung einer Ampel an der Start-/Ziellinie. So sollen die Autos nur bei grünem Licht starten und automatisch anhalten, wenn das Licht blau geschaltet ist. Die Ampel wird durch einen LED-Streifen auf dem Boden realisiert.
+
+\section{Das Auto}
+Die Komponenten, die für den Bau des Autos verwendet werden dürfen, sind vorgegeben und werden von der Hochschule bereitgestellt:
+
+\begin{itemize}
+	\item Einfacher Modellbau-Auto-Bausatz, bestehend aus Rahmen, DC-Getriebemotoren und gummierten Rädern
+	\item \unit[7,2]{V} NiMH Akku mit einer Kapazität von \unit[4000]{mAh}
+	\item Motortreiber L298N für DC-Motoren mit Dual H-Bridge
+	\item Raspberry Pi 3 Model B (4-Kern-CPU, \unit[1,2]{GHz}, \unit[1]{GB} Ram, WLAN, Bluetooth)
+	\item USB-Webcam (640 x 480 px, \unit[30]{fps}, manueller Fokus)
+	\item Ultraschallsensor HC-SR04 (messbare Distanz: \unit[2-300]{cm}, Auflösung: \unit[3]{mm}, max. 50 Messungen pro Sekunde)
+\end{itemize}
+
+
+Alle Komponenten (mit Ausnahme des Raspberrys) wurden im Hinblick auf einen möglichst günstigen Einkaufspreis ausgewählt. Dementsprechend sind die Erwartungen an Haltbarkeit, Genauigkeit und Ausfallsicherheit der Produkte und letztendlich an die Performance des Autos nicht allzu hoch.
+
+Neben den aufgeführten Komponenten steht den Studenten eine Werkstatt mit 3D-Drucker, Lötgerät und einer Vielzahl an Elektronik-Bauteilen (Kabel, Widerstände, Platinen …) zur Verfügung.\\
+
+Als Programmiersprache wird Python verwendet. Diese universelle Sprache zeichnet sich durch einfache und leicht verständliche Syntax, große Nutzerbasis sowie mächtige Bibliotheken aus und ist quasi Standardsprache auf dem Raspberry Pi.
+
+\section{Umsetzung}
+
+\subsection{Kamerahalterung}
+\begin{figure}[ht!] \centering
+	\begin{subfigure}{.5\textwidth} \centering
+		\includegraphics[width=\textwidth]{../bilder_videos/RaspberryCar.png}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth} \centering
+		\includegraphics[width=\textwidth]{../bilder_videos/RaspberryCar-2.png}
+	\end{subfigure}%
+	\caption{Das Auto im Finalen Aufbau}
+	\label{auto}
+\end{figure}
+
+\section{Schaltplan}
+
+\begin{figure}[ht!] \centering
+	\includegraphics[width=.5\textwidth]{Schaltplan_Steckplatine.png}
+	\caption{Schaltplan}
+	\label{schaltplan}
+\end{figure}
+
+\newpage
 \section{Code}
 
 Das Programm wird über die \textit{main.py} Datei ausgeführt. Zwei Module \textit{setup.py} und \textit{aufrauemen.py} sind ausgelagert, dadurch ist die Hauptdatei übersichtlicher und die Module können einfacher von anderen Dateien mitbenutzt werden.
