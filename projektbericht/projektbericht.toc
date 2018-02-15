@@ -5,7 +5,6 @@
 \contentsline {section}{\numberline {4}Die Rennstrecke}{4}{section.4}
 \contentsline {section}{\numberline {5}Das Auto}{5}{section.5}
 \contentsline {section}{\numberline {6}Umsetzung}{5}{section.6}
-\contentsline {subsection}{\numberline {6.1}Kamerahalterung}{5}{subsection.6.1}
 \contentsline {section}{\numberline {7}Schaltplan}{5}{section.7}
 \contentsline {section}{\numberline {8}Code}{6}{section.8}
 \contentsline {subsection}{\numberline {8.1}main.py}{7}{subsection.8.1}
