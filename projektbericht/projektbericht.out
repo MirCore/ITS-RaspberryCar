@@ -4,26 +4,27 @@
 \BOOKMARK [2][-]{subsection.2.2}{Projektziel}{section.2}% 4
 \BOOKMARK [2][-]{subsection.2.3}{Die Rennstrecke}{section.2}% 5
 \BOOKMARK [2][-]{subsection.2.4}{Das Auto}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.5}{Umsetzung}{section.2}% 7
-\BOOKMARK [2][-]{subsection.2.6}{Schaltplan}{section.2}% 8
-\BOOKMARK [1][-]{section.3}{Code}{}% 9
-\BOOKMARK [2][-]{subsection.3.1}{main.py}{section.3}% 10
-\BOOKMARK [3][-]{subsubsection.3.1.1}{import}{subsection.3.1}% 11
-\BOOKMARK [3][-]{subsubsection.3.1.2}{main}{subsection.3.1}% 12
-\BOOKMARK [3][-]{subsubsection.3.1.3}{line}{subsection.3.1}% 13
-\BOOKMARK [3][-]{subsubsection.3.1.4}{linienfahren}{subsection.3.1}% 14
-\BOOKMARK [3][-]{subsubsection.3.1.5}{lenken}{subsection.3.1}% 15
-\BOOKMARK [3][-]{subsubsection.3.1.6}{checkgreen}{subsection.3.1}% 16
-\BOOKMARK [3][-]{subsubsection.3.1.7}{checkblue}{subsection.3.1}% 17
-\BOOKMARK [3][-]{subsubsection.3.1.8}{makevideo}{subsection.3.1}% 18
-\BOOKMARK [2][-]{subsection.3.2}{setup.py}{section.3}% 19
-\BOOKMARK [2][-]{subsection.3.3}{aufraeumen.py}{section.3}% 20
-\BOOKMARK [1][-]{section.4}{3D-Druck-Halterungen}{}% 21
-\BOOKMARK [2][-]{subsection.4.1}{Kamerahalterung}{section.4}% 22
-\BOOKMARK [2][-]{subsection.4.2}{Ultraschallsensorhalterung}{section.4}% 23
-\BOOKMARK [1][-]{section.5}{Probleme}{}% 24
-\BOOKMARK [1][-]{section.6}{Ergebnis}{}% 25
-\BOOKMARK [1][-]{section.7}{Geplante Weiterentwicklungen}{}% 26
-\BOOKMARK [1][-]{section*.15}{Tabellenverzeichnis}{}% 27
-\BOOKMARK [1][-]{section*.16}{Abbildungsverzeichnis}{}% 28
-\BOOKMARK [1][-]{section*.16}{Literaturverzeichnis}{}% 29
+\BOOKMARK [2][-]{subsection.2.5}{Konstruktion des Autos}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{Programmierung}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.7}{Schaltplan}{section.2}% 9
+\BOOKMARK [1][-]{section.3}{Code}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{main.py}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.1.1}{import}{subsection.3.1}% 12
+\BOOKMARK [3][-]{subsubsection.3.1.2}{main}{subsection.3.1}% 13
+\BOOKMARK [3][-]{subsubsection.3.1.3}{line}{subsection.3.1}% 14
+\BOOKMARK [3][-]{subsubsection.3.1.4}{linienfahren}{subsection.3.1}% 15
+\BOOKMARK [3][-]{subsubsection.3.1.5}{lenken}{subsection.3.1}% 16
+\BOOKMARK [3][-]{subsubsection.3.1.6}{checkgreen}{subsection.3.1}% 17
+\BOOKMARK [3][-]{subsubsection.3.1.7}{checkblue}{subsection.3.1}% 18
+\BOOKMARK [3][-]{subsubsection.3.1.8}{makevideo}{subsection.3.1}% 19
+\BOOKMARK [2][-]{subsection.3.2}{setup.py}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.3}{aufraeumen.py}{section.3}% 21
+\BOOKMARK [1][-]{section.4}{3D-Druck-Halterungen}{}% 22
+\BOOKMARK [2][-]{subsection.4.1}{Kamerahalterung}{section.4}% 23
+\BOOKMARK [2][-]{subsection.4.2}{Ultraschallsensorhalterung}{section.4}% 24
+\BOOKMARK [1][-]{section.5}{Probleme}{}% 25
+\BOOKMARK [1][-]{section.6}{Ergebnis}{}% 26
+\BOOKMARK [1][-]{section.7}{Geplante Weiterentwicklungen}{}% 27
+\BOOKMARK [1][-]{section*.15}{Tabellenverzeichnis}{}% 28
+\BOOKMARK [1][-]{section*.16}{Abbildungsverzeichnis}{}% 29
+\BOOKMARK [1][-]{section*.16}{Literaturverzeichnis}{}% 30
